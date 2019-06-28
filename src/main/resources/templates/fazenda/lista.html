@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>Sitio Nova Esperança</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<link rel="icon" th:href="@{/image/_boi_preto.jpg}" />
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css}" rel="stylesheet" />
+	
+	<!-- Custom styles for this template -->
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+	<link th:href="@{trata_paginas/fotos.css}" rel="stylesheet" >
+</head>
+<body>
+		<header th:replace="usuario/menu :: menu">
+			<div id="page-footer" name="content" width="880" marginwidth="0"
+				height="700" marginheight="0" scrolling="no" frameborder="0"
+				hspace="0" vspace="0" allowtransparency="true" application="true">
+			</div>
+		</header>
+		<div class="container"
+			style="width: 900px; background-color: #ffffff; margin: 60px auto 0px auto; box-shadow: 0px 0px 10px black; padding: 10px;">
+
+		<div style="margin: 20px auto 30px auto">
+			<h3>Lista de Fazendas</h3>
+		</div>
+	
+	        <div class="container" id="listagem">
+	        
+	        	<div th:replace="fragments/alert"></div>
+	        	
+	            <div class="table-responsive">
+	                <table class="table table-striped table-hover table-sm">
+	                    <thead>
+	                    <tr>
+	                        <th>#</th>
+	                        <th>CNPJ</th>
+	                        <th>Nome</th>
+	                        <th>Local</th>
+	                        <th>Modif</th>
+	                        <th>Status</th>
+	                        <th>Ação</th>
+	                    </tr>
+	                    </thead>
+	                    <tbody>
+		                    <tr th:each="v : ${fazenda}">
+		                        <td th:text="${v.id}">1</td>
+		                        <td th:text="${v.cnpj}">1035135103</td>
+		                        <td th:text="${v.local}">Goiânia</td>
+		                        <td th:text="${v.modif}">coisa nova</td>
+		                        <td th:text="${v.status}">coisa nova</td>
+		                        <td colspan="2">
+		                            <a class="btn btn-info btn-sm" th:href="@{/fazenda/editar/{id} (id=${v.id}) }" role="button">
+		                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+		                            </a>
+		                            <button th:id="${#strings.concat('btn_fazenda/excluir/', v.id)  }" type="button" 
+		                                    class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
+		                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
+		                            </button>
+		                        </td>
+		                    </tr>	
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+
+
+			<a class="btn btn-primary"
+				role="button" th:href="@{/fazenda/cadastrar}"> <span>Cadastrar</span>
+			</a>	      
+					     
+	        <div th:replace="fragments/modal :: modal"></div>
+	        	
+	        	        	<!-- Bootstrap core JavaScript
+		    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.min.js}"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		var url = '';
+
+		$('button[id*="btn_"]').click(function() {
+			url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+		});
+
+		$('#ok_confirm').click(function() {
+			document.location.href = url;
+		});
+
+		$(function() {
+			$('[data-toggle="popover"]').popover();
+		});
+
+		$(document).ready(function() {
+			$(".navbar-toggle").click(function() {
+				$(".menu").toggleClass("menu-open");
+			})
+		});
+	</script>
+	    </div>
+</body>
+</html>		

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Sitio Nova Esperança</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="icon" th:href="@{/image/_boi_preto.jpg}" />
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link
+	th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css}"
+	rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<link th:href="@{trata_paginas/menu.css}" rel="stylesheet">
+</head>
+<body>
+	<div id="menu" style="width: 900px; background-color: #ffffff; margin: -20px auto 0px auto; box-shadow: 0px 0px 10px black; padding: 10px;"  th:fragment="menu">
+		<header id="header-index" class="ts-separate-bg-element"
+			data-mask-bottom-wn-color="#fff" data-bg-image-opacity=".8"
+			data-bg-parallax="scroll" data-bg-parallax-speed="3"
+			style="height: 200px; background: url('../image/_matinho.jpg') no-repeat 95% 95%; background-size: 1500px 200px;">
+			<div class="ts-mask-bottom-wn"></div>
+
+			<div class="container" style="margin-top: 10px">
+				<h3>Sitio Nova Esperança</h3>
+				<h5 class="card-subtitle mb-2 text-muted">Menu</h5>
+			</div>
+
+			<nav class="menu menu-open">
+				<ul class="nav nav-pills" style="margin: 50px auto auto 90px">
+					
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" style="margin: 20px;">PESSOAS</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" th:href="@{/pessoa/listar}">Listar</a>
+						</div>
+					</div>
+					
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" style="margin: 20px;">VACAS
+							PARIDAS</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" th:href="@{/vacasp/cadastrar}">Cadastrar</a>
+							<a class="dropdown-item" th:href="@{/vacasp/listar}">Listar</a>
+						</div>
+					</div>
+					
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" style="margin: 20px;">GADO</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" th:href="@{/gado/cadastrar}">Cadastrar</a>
+							<a class="dropdown-item" th:href="@{/gado/listar}">Listar</a>
+						</div>
+					</div>
+					
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" style="margin: 20px;">FAZENDAS</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" th:href="@{/fazenda/cadastrar}">Cadastrar</a>
+							<a class="dropdown-item" th:href="@{/fazenda/listar}">Listar</a>
+						</div>
+					</div>					
+
+				</ul>
+			</nav>
+		</header>
+	</div>
+	<!-- Bootstrap core JavaScript
+		    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.min.js}"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		var url = '';
+
+		$('button[id*="btn_"]').click(function() {
+			url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+		});
+
+		$('#ok_confirm').click(function() {
+			document.location.href = url;
+		});
+
+		$(function() {
+			$('[data-toggle="popover"]').popover();
+		});
+
+		$(document).ready(function() {
+			$(".navbar-toggle").click(function() {
+				$(".menu").toggleClass("menu-open");
+			})
+		});
+	</script>
+</body>
+</html>

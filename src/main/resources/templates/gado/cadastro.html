@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>Sitio Nova Esperança</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<link rel="icon" th:href="@{/image/_boi_preto.jpg}" />
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css}" rel="stylesheet" />
+	
+	<!-- Custom styles for this template -->
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+	<link th:href="@{trata_paginas/fotos.css}" rel="stylesheet" >
+</head>
+<body>
+	<header th:replace="usuario/menu :: menu">
+		<div id="page-footer" name="content" width="880" marginwidth="0"
+			height="700" marginheight="0" scrolling="no" frameborder="0"
+			hspace="0" vspace="0" allowtransparency="true" application="true">
+		</div>
+	</header>
+			<div class="container"
+			style="width: 900px; background-color: #ffffff; margin: 60px auto 0px auto; box-shadow: 0px 0px 10px black; padding: 10px;">
+		
+			<div style="margin: 20px auto 30px auto">
+				<h3>Cadastro do Animal</h3>
+			</div>
+	
+	        <div class="container" id="cadastro">
+	        	
+	        	<div th:replace="fragments/alert"></div>
+	           
+	            <form th:action="${gado.id == null} ? @{/gado/salvar} : @{/gado/editar}" 
+	                  th:object="${gado}" method="POST">
+	                
+	                <div th:replace="fragments/validacao  :: validacao"></div>
+	                
+	                <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="nome">Nome do Gado</label>
+	                        <input type="text" class="form-control" id="nome" placeholder="Nome Gado" 
+	                        		autofocus="autofocus" th:field="*{nome}"/>
+	                    </div>
+	                    <div class="form-group col-md-4">
+	                        <label for="vacasp">VacasP</label>
+	                        <select id="vacasp" class="form-control" th:field="*{vacasp}">
+	                            <option value="">Selecione</option>
+	                            <option th:each="d : ${vacasp}" 
+	                                    th:value="${d.id}" th:text="${d.nome}">12345</option>
+	                        </select>
+	                    </div>
+	                </div>
+	                <input type="hidden" id="id" th:field="*{id}"/>
+	                <button type="submit" class="btn btn-primary">Salvar</button>
+	                
+					<button type="reset" id="btnilim" name="btnnlim"
+						class="btn btn-danger">Limpar</button>
+
+					<a class="btn btn-warning btn-md" 
+						role="button" th:href="@{/gado/listar}"> <span>Consultar</span>
+					</a>	      
+					     	                
+	            </form>
+	        </div>
+	        	<!-- Bootstrap core JavaScript
+		    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.min.js}"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		var url = '';
+
+		$('button[id*="btn_"]').click(function() {
+			url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+		});
+
+		$('#ok_confirm').click(function() {
+			document.location.href = url;
+		});
+
+		$(function() {
+			$('[data-toggle="popover"]').popover();
+		});
+
+		$(document).ready(function() {
+			$(".navbar-toggle").click(function() {
+				$(".menu").toggleClass("menu-open");
+			})
+		});
+	</script>
+	    </div>
+</body>
+</html>		

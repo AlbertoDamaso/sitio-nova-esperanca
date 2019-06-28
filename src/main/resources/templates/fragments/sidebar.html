@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+			<nav class="sidebar sidebar-open" th:fragment="nav-sidebar">
+				<ul class="nav nav-pills">
+					<li class="nav-item"><a class="nav-link " th:href="@{/entrada}"> <i
+							class="oi oi-home"></i> <span th:text="#{sidebar.link.home}"></span>
+					</a></li>
+				</ul>
+
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active">VacasP</span></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/vacasps/cadastrar}"> <i class="oi oi-plus"></i> 
+						<span th:text="#{sidebar.link.cadastrar}">Cadastrar</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/vacasps/listar}"> <i class="oi oi-spreadsheet"></i>
+							<span th:text="#{sidebar.link.listar}">Listar </span>
+					</a></li>
+				</ul>
+
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active">Gado</span></li>
+					<li class="nav-item"><a class="nav-link" 
+						th:href="@{/gados/cadastrar}"> <i class="oi oi-plus"></i> 
+						<span th:text="#{sidebar.link.cadastrar}">Cadastrar </span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" 
+						th:href="@{/gados/listar}"> <i
+							class="oi oi-spreadsheet"></i> 
+							<span th:text="#{sidebar.link.listar}">Listar </span>
+					</a></li>
+				</ul>
+
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active">Pessoas</span></li>
+					<li class="nav-item"><a class="nav-link" 
+						th:href="@{/pessoas/cadastrar}"> <i class="oi oi-plus"></i> 
+						<span th:text="#{sidebar.link.cadastrar}">Cadastrar </span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" 
+						th:href="@{/pessoas/listar}"> <i class="oi oi-spreadsheet"></i> 
+						<span th:text="#{sidebar.link.listar}">Listar </span>
+					</a></li>
+				</ul>
+			</nav>
+</body>
+</html>
